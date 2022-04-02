@@ -3,19 +3,46 @@ import { Comment, Post } from "../models/models.js";
 export const getPosts = async (req, res) => {
   try {
     const posts = await Post.findAll({
-      include: [{ model: Comment }],
+      attributes: ["id", "author", "content", "createdAt"],
+      include: [
+        {
+          model: Comment,
+          attributes: ["id", "author", "content", "createdAt"],
+        },
+      ],
+      order: [
+        ["id", "DESC"],
+        [Comment, "createdAt", "DESC"],
+      ],
     });
-    await res.send(posts);
+    await res.status(200).send(posts);
   } catch (error) {
-    console.log(error);
+    res.status(400);
   }
 };
 
 export const createPost = async (req, res) => {
+  if (!req.body) res.status(400);
   try {
-    const test = await Post.create(req.body);
-    res.json({ message: "Post created" });
+    const post = await Post.create(req.body);
+    const createdPost = await Post.findOne({
+      where: {
+        id: post.id,
+      },
+      attributes: ["id", "author", "content", "createdAt"],
+      include: [
+        {
+          model: Comment,
+          attributes: ["id", "author", "content", "createdAt"],
+        },
+      ],
+      order: [
+        ["id", "DESC"],
+        [Comment, "createdAt", "DESC"],
+      ],
+    });
+    res.status(200).send(createdPost);
   } catch (error) {
-    console.log(error);
+    res.status(400).send(error);
   }
 };
