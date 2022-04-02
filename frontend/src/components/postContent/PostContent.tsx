@@ -6,7 +6,6 @@ import { StyledWrapper } from "./StyledPost";
 
 function PostContent() {
     const { posts } = useSelector(postSelector);
-    console.log(posts, "posts");
   return (
     <StyledWrapper>
       <InputSection />

@@ -20,7 +20,3 @@ export const StyledCommentField = styled(TextField)`
     font-size: 1rem;
   }
 `;
-
-export const StyledBtn = styled(Button)`
- 
-`;

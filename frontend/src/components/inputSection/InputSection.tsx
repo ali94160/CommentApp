@@ -1,11 +1,8 @@
+import { Button } from "@mui/material";
 import React, { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createComment, createPost } from "../../store/post/post";
-import {
-  StyledCommentForm,
-  StyledBtn,
-  StyledCommentField,
-} from "./StyledInputSection";
+import { StyledCommentForm, StyledCommentField } from "./StyledInputSection";
 
 interface Props {
   postId?: number;
@@ -20,7 +17,6 @@ function InputSection({ postId }: Props) {
     e.preventDefault();
 
     if (content === " " || author === " ") {
-      console.log("DONT use empty strings");
       return;
     }
     if (postId) {
@@ -56,7 +52,6 @@ function InputSection({ postId }: Props) {
         <StyledCommentField
           required
           value={content}
-          // {val === "" && val === undefined ? props.value = null : val}
           onChange={(e) => setContent(e.target.value)}
           label={
             postId
@@ -65,9 +60,9 @@ function InputSection({ postId }: Props) {
           }
           variant="outlined"
         />
-        <StyledBtn type="submit" variant="outlined">
+        <Button type="submit" variant="outlined">
           Send
-        </StyledBtn>
+        </Button>
       </StyledCommentForm>
     </Fragment>
   );

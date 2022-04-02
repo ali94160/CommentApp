@@ -37,7 +37,7 @@ const postSlice = createSlice({
     },
   },
 });
-const UNEXPECTED_ERROR_MESSAGE = "Unexpected error, try again later.";
+const UNEXPECTED_ERROR_MESSAGE = "UNEXPECTED ERROR";
 
 export const {
   setPosts,
@@ -76,7 +76,7 @@ export const createPost = (data: CreatePost): AppThunk => {
 export const createComment = (data: CreateComment): AppThunk => {
   return async (dispatch) => {
     try {
-      const url = "/rest/commen";
+      const url = "/rest/comment";
       const resComment = await axios.post(url, data);
       dispatch(updatePost(resComment.data));
     } catch (error) {

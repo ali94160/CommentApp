@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// linear-gradient(45deg, #2196F3 30%, #21CBF3 90%) - blue bg
 
 export const StyledNavbar = styled.nav`
   width: 100%;

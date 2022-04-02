@@ -11,7 +11,7 @@ function CostumSnackbar() {
     <Fragment>
       <Snackbar
         open={openModal}
-        autoHideDuration={4000}
+        autoHideDuration={5000}
         onClose={() => dispatch(setModalOpen(false))}
       >
         <Alert
